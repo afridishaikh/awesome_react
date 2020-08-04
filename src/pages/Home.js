@@ -1,56 +1,54 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
-import Icon from "@material-ui/core/Icon";
-import DeleteIcon from "@material-ui/icons/Delete";
-import Button from "@material-ui/core/Button";
+import React, { Component } from 'react';
+import firebase from '../config'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing(1)
-  },
-  input: {
-    display: "none"
+
+export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // loading: false,
+      caption: [],
+    };
   }
-});
 
-const FlatButtons = props => {
-  const { classes } = props;
-  return (
-    <div>
-      <div>
-        <Button
-          variant="contained"
-          color="primary"
-          aria-label="add"
-          className={classes.button}
-        >
-          <AddIcon />
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          aria-label="edit"
-          className={classes.button}
-        >
-          <Icon>edit_icon</Icon>
-        </Button>
-        <Button
-          variant="contained"
-          disabled
-          aria-label="delete"
-          className={classes.button}
-        >
-          <DeleteIcon />
-        </Button>
-      </div>
-    </div>
-  );
-};
+  componentDidMount() {
+    var root = firebase.database().ref('captions');
+    root.on('value', Snapshot => {
+      Snapshot.forEach(item => {
+        this.state.caption.push({ id: item.key, ...item.val() })
+      })
+      this.setState({
+        // isLoading: false
+      })
+    });
+  }
 
-FlatButtons.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
-export default withStyles(styles)(FlatButtons);
+  render() {
+    return (
+      <>
+      {/* <Card.Group items={this.state.caption} /> */}
+
+        {
+        this.state.caption.map((item, index) => (
+
+        <Card variant="outlined"  style={{ width: '100%' , height:100, backgroundColor :'red', margin:10 ,alignContent:'center' , padding:5 }}>
+        <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        {/* {item.caption} */}
+
+        </Card.Body>
+       
+        {/* <li key={index}>{item.caption}</li> */}
+        </Card>
+        
+      ))
+      }
+      </>
+    );
+  };
+
+}
