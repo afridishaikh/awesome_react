@@ -15,11 +15,10 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import Home from "../pages/Home";
-import Grid from "../pages/Grid";
+import About from "../pages/About";
 
-const drawerWidth = 240;
+const drawerWidth = '45%'
 const history = createBrowserHistory();
-
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -82,20 +81,18 @@ const MyDrawer = withStyles(styles)(
         })}
       />
       <List>
-        <ListItem button component={Link} to="/" onClick={onItemClick('Home')}>
+        <ListItem button component={Link} to="/" onClick={onItemClick('CaptionKing')}>
           <ListItemText>Home</ListItemText>
         </ListItem>
-        <ListItem button component={Link} to="/Grid" onClick={onItemClick('Page 2')}>
-          <ListItemText>Page 2</ListItemText>
+        <ListItem button component={Link} to="/About" onClick={onItemClick('Contact Info')}>
+          <ListItemText>Contact Info</ListItemText>
         </ListItem>
-        <ListItem button onClick={onItemClick('Page 3')}>
-          <ListItemText>Page 3</ListItemText>
-        </ListItem>
+
       </List>
     </Drawer>
     <main className={classes.content}>
         <Route exact path="/" component={Home} />
-        <Route path="/grid" component={Grid} />
+        <Route path="/about" component={About} />
     </main>
     </Router>
   )
