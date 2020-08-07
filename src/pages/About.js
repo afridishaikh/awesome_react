@@ -1,11 +1,12 @@
 import React from "react";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import '../index.css'
+import { CardActionArea } from '@material-ui/core';
 
 const About = () => {
   return (
@@ -30,56 +31,47 @@ const About = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              width: '30%',
+              width: '50%',
               height: '70%',
-              backgroundColor: 'black',
+              backgroundColor: '#031636',
               alignContent: 'center',
               alignItems: 'center',
               margin: 5,
+              marginBottom: 50,
               padding: 3
             }}
           >
-            <CardContent
-              style={{
-                flexDirection: 'row',
-                width: '100',
-                height: '500',
-                justifyContent: 'space-evenly',
-                margin: "50"
-              }}
-            >
-            </CardContent>
-
-            <div
-              style={{
-                flexDirection: 'Row',
-                // backgroundColor: 'red',
-                justifyContent: 'space-evenly',
-              }}
-            >
-              <IconButton
-              style = {{
-                color : 'yellow',
-              }
-            }
-             
-                onClick={() => { window.open("https://instagram.com/24hoursfuck"); }}
+            <CardActionArea onClick={() => { window.open("https://instagram.com/24hoursfuck"); }}>
+              <CardContent
+                style={{
+                  flexDirection: 'row',
+                  width: '100',
+                  height: '500',
+                  alignContent: 'center'
+                }}
               >
-                <InstagramIcon
-                color= 'red'
-                />
-              </IconButton>
+                <IconButton
+                  style={{
+                    color: '#f06292',
 
+                  }
+                  }
+                  onClick={() => { window.open("https://instagram.com/24hoursfuck"); }}
+                >
+                  <InstagramIcon
+                    style={{
+                      width: 45, height: 45
+                    }}
+                  />
+                </IconButton>
+                <text style={{
+                  fontSize: 18,
+                  color: '#ffcc00',
+                  fontFamily: "Roboto"
+                }}>24hoursfuck</text>
 
-
-              <text style={{
-                marginLeft: 10,
-                margin: 10,
-                color: 'yellow'
-              }}>24hoursfuck</text>
-
-
-            </div>
+              </CardContent>
+            </CardActionArea>
           </Card>
 
           {/* KAZAMA INFO */}
@@ -90,9 +82,9 @@ const About = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              width: '30%',
+              width: '50%',
               height: '70%',
-              backgroundColor: 'black',
+              backgroundColor: '#031636',
               alignContent: 'center',
               alignItems: 'center',
               margin: 5,
@@ -102,7 +94,6 @@ const About = () => {
             <CardContent
               style={{
                 flexDirection: 'row',
-                backgroundColor: 'red',
                 width: '90%',
                 height: '500',
                 // justifyContent: 'space-evenly',
@@ -110,45 +101,65 @@ const About = () => {
               }}
             >
 
-              <Typography color="textSecondary" gutterBottom>
+              <Typography style={{
+                color: 'white'
+              }} gutterBottom>
                 Developed By,
         </Typography>
-
-
-
               <text style={{
                 marginLeft: 10,
-                margin: 10
+                margin: 10,
+                color: '#ffcc00',
+                fontSize: 18
               }}>Coder Kazama</text>
-
-
 
             </CardContent>
 
             <div
-
               style={{
-                // width: '80%',
                 flexDirection: 'row',
-                backgroundColor: 'red',
-                // margin: '5%',
-                alignItems: 'stretch'
+                justifyContent: 'space-evenly',
+
               }}
             >
 
               <IconButton
+                style={{
+                  marginRight: 20,
 
+                  color: '#f06292',
+
+                }}
               >
                 <InstagramIcon
+                  onClick={() => { window.open("https://instagram.com/coder_kazama"); }}
+                  style={{
+                    width: 45, height: 45,
 
+                  }}
                 />
               </IconButton>
 
-              <IconButton>
-                <MailOutlineIcon />
+              <IconButton
+                style={{
+                  marginLeft: 20,
+                  color: '#d66c6f',
+                }}
+                onClick={() => { window.open("mailto:coderkazama@gmail.com"); }}
+              >
+                <MailOutlineIcon
+                  style={{
+                    width: 45, height: 45,
+                  }}
+                />
               </IconButton>
 
             </div>
+
+            <text style={{
+              color: 'white',
+              fontSize: 15
+            }}>Feel Free to Contact us !</text>
           </Card>
 
         </center>
@@ -156,6 +167,5 @@ const About = () => {
     </>
   );
 }
-
 
 export default About;

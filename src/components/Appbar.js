@@ -2,7 +2,9 @@ import React, { useState, Fragment } from 'react';
 import clsx from 'clsx';
 import { Router, Route, Link } from "react-router-dom";
 import { createBrowserHistory } from "history";
-
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+import HomeIcon from '@material-ui/icons/Home';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -43,7 +45,9 @@ const styles = theme => ({
 const MyToolbar = withStyles(styles)(
   ({ classes, title, onMenuClick }) => (
     <Fragment>
-      <AppBar className={classes.aboveDrawer}>
+      <AppBar className={classes.aboveDrawer}
+         style={{ background: '#182c87' }}
+      >
         <Toolbar>
           <IconButton
             className={classes.menuButton}
@@ -60,6 +64,11 @@ const MyToolbar = withStyles(styles)(
           >
             {title}
           </Typography>
+          <a href="http://www.mediafire.com/file/gk4vevpu7vrl3d9/CaptionKing-Captions_for_Instagram_%2526_FB_post.apk/file" target="_blank">
+            <img
+              height='50'
+              src={require('../asset/app.png')} />
+          </a>
         </Toolbar>
       </AppBar>
       <div className={classes.toolbarMargin} />
@@ -70,37 +79,86 @@ const MyToolbar = withStyles(styles)(
 const MyDrawer = withStyles(styles)(
   ({ classes, variant, open, onClose, onItemClick }) => (
     <Router history={history}>
-    <Drawer variant={variant} open={open} onClose={onClose}
-                classes={{
-                  paper: classes.drawerPaper
-                }}
-    >
-      <div
-        className={clsx({
-          [classes.toolbarMargin]: variant === 'persistent'
-        })}
-      />
-      <List>
-        <ListItem button component={Link} to="/" onClick={onItemClick('CaptionKing')}>
-          <ListItemText>Home</ListItemText>
-        </ListItem>
-        <ListItem button component={Link} to="/About" onClick={onItemClick('Contact Info')}>
-          <ListItemText>Contact Info</ListItemText>
-        </ListItem>
+      <Drawer variant={variant} open={open} onClose={onClose}
+        classes={{
+          paper: classes.drawerPaper
+        }}
+      >
+        <div
+          className={clsx({
+            [classes.toolbarMargin]: variant === 'persistent'
+          })}
+        />
 
-      </List>
-    </Drawer>
-    <main className={classes.content}>
+        <img
+          height='200'
+
+          src={require('../asset/header.jpg')} />
+
+        <List>
+          <ListItem button component={Link} to="/" onClick={onItemClick('CaptionKing')}>
+           
+           <HomeIcon
+           style ={{
+             marginRight: 5
+           }}
+           />
+            <ListItemText>Home</ListItemText>
+          </ListItem>
+         
+          <ListItem button component={Link} to="/About" onClick={onItemClick('Contact Info')}>
+            
+            <ContactPhoneIcon
+                 style ={{
+                  marginRight: 5
+                }}
+                />
+        
+            <ListItemText>Contact Info</ListItemText>
+          </ListItem>
+
+          <div
+
+            style={{
+              marginTop: '50%',
+              paddingLeft: 10,
+              backgroundColor: 'grey'
+            }}
+          >
+            <text
+            style={{
+              fontSize: 25
+            }}
+            > Made with 
+            
+            <FavoriteIcon
+
+              style ={{
+                color:'red',
+                paddingTop: 2,
+                marginLeft: 4,
+                marginRight: 4
+              }}
+            />
+            in India.
+            </text> 
+            
+       
+
+          </div>
+        </List>
+      </Drawer>
+      <main className={classes.content}>
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
-    </main>
+      </main>
     </Router>
   )
 );
 
 function AppBarInteraction({ classes, variant }) {
   const [drawer, setDrawer] = useState(false);
-  const [title, setTitle] = useState('Home');
+  const [title, setTitle] = useState('CaptionKing');
 
   const toggleDrawer = () => {
     setDrawer(!drawer);
